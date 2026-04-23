@@ -140,7 +140,7 @@ df_under_20 =pd.read_sql("""
         HAVING COUNT(DISTINCT c.customerNumber) < 20
     )
     GROUP BY e.employeeNumber, e.firstName, e.lastName, o.city, o.officeCode
-    ORDER BY e.firstName;
+    ORDER BY e.employeeNumber ASC;
 """, conn)
 # Run this cell without changes
 
