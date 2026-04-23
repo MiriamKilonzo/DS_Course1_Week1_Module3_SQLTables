@@ -9,6 +9,7 @@ import pandas as pd
 conn = sqlite3.connect('data.sqlite')
 
 pd.read_sql("""SELECT * FROM sqlite_master""", conn)
+
 # CodeGrade step1
 # Replace None with your code
 df_boston =pd.read_sql(""" 
@@ -18,6 +19,7 @@ df_boston =pd.read_sql("""
           ON e.officeCode=o.officeCode
      WHERE city= 'Boston';
                        """,conn)
+
 # CodeGrade step2
 # Replace None with your code
 df_zero_emp =pd.read_sql(""" 
@@ -59,7 +61,7 @@ ORDER BY CAST(p.amount AS DECIMAL(10,2)) DESC;
 # CodeGrade step6
 # Replace None with your code
 df_credit = pd.read_sql(""" 
-       SELECT e.firstName,e.lastName,e.employeeNumber,c.creditLimit,COUNT(c.salesRepEmployeeNumber) AS number_of_employees
+       SELECT e.firstName,e.lastName,e.employeeNumber,COUNT(c.salesRepEmployeeNumber) AS number_of_employees
        FROM employees e
        JOIN customers c
             ON e.employeeNumber=c.salesRepEmployeeNumber
@@ -137,7 +139,8 @@ df_under_20 =pd.read_sql("""
         GROUP BY p.productCode
         HAVING COUNT(DISTINCT c.customerNumber) < 20
     )
-    GROUP BY e.employeeNumber, e.firstName, e.lastName, o.city, o.officeCode;
+    GROUP BY e.employeeNumber, e.firstName, e.lastName, o.city, o.officeCode
+    ORDER BY e.firstName;
 """, conn)
 # Run this cell without changes
 
