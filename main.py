@@ -13,7 +13,7 @@ pd.read_sql("""SELECT * FROM sqlite_master""", conn)
 # CodeGrade step1
 # Replace None with your code
 df_boston =pd.read_sql(""" 
-     SELECT firstName, lastName,jobTitle
+     SELECT firstName, lastName
      FROM employees AS e
      JOIN offices AS o
           ON e.officeCode=o.officeCode
@@ -140,8 +140,9 @@ df_under_20 =pd.read_sql("""
         HAVING COUNT(DISTINCT c.customerNumber) < 20
     )
     GROUP BY e.employeeNumber, e.firstName, e.lastName, o.city, o.officeCode
-    ORDER BY e.employeeNumber ASC;
+    ORDER BY e.lastName
 """, conn)
+
 # Run this cell without changes
 
 conn.close()
